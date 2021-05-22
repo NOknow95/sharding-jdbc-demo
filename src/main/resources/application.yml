@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    primary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://localhost:3306/test_database?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      password: root1234
+      username: root
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    out-of-order: true
+  #    url: jdbc:mysql://localhost:3306/test_database?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+#    user: root
+#    password: root1234
+
+  shardingsphere:
+    sharding:
+      tables:
+        order:
+          logic-table: order
+          actual-data-nodes: test_database.order_$->{0..9}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: order_$->{id % 10}
+          key-generator:
+            column: id
+            type: MySnowFlake
+            props:
+              workid: 12
+              datacenterid: 14
+
+        audit_log:
+          logic-table: audit_log
+          actual-data-nodes: test_database.audit_log_$->{0..9}
+          table-strategy:
+            standard:
+              sharding-column: create_time
+              precise-algorithm-class-name: com.noknow.shardingjdbcdemo.config.sharding.AuditLogAlgorithm
+          key-generator:
+            column: id
+            type: UUID
+    props:
+      sql.show: true
+      check.table.metadata.enabled: true
+
+
+logging:
+  level:
+    com:
+      noknow: debug
+mybatis:
+  mapper-locations: classpath:com/**/mapper/*.xml
