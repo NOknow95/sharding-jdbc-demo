@@ -1,4 +1,4 @@
-package com.noknow.shardingjdbcdemo.repository.mysql.sharding.mapper;
+package com.noknow.shardingjdbcdemo.repository.sharding.mapper;
 
 import com.noknow.shardingjdbcdemo.repository.entity.Order;
 import java.util.List;

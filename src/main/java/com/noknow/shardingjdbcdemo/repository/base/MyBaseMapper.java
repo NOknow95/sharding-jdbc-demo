@@ -1,4 +1,4 @@
-package com.noknow.shardingjdbcdemo.repository.mysql;
+package com.noknow.shardingjdbcdemo.repository.base;
 
 import tk.mybatis.mapper.common.IdsMapper;
 import tk.mybatis.mapper.common.Mapper;

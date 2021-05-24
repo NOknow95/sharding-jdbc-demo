@@ -22,7 +22,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @date 2021/05/15
  */
 @Configuration
-@MapperScan(basePackages = "com.noknow.shardingjdbcdemo.repository.mysql.mapper",
+@MapperScan(basePackages = "com.noknow.shardingjdbcdemo.repository.mapper",
     annotationClass = Mapper.class,
     sqlSessionFactoryRef = "primarySqlSessionFactory",
     sqlSessionTemplateRef = "primarySqlSessionTemplate"
@@ -38,7 +38,7 @@ public class PrimaryDatasourceConfig {
 
   @Primary
   @Bean("primaryDataSource")
-  public HikariDataSource primaryDatasource(
+  public DataSource primaryDatasource(
       @Qualifier("primaryDatasourceProps") HikariConfig config) {
     return new HikariDataSource(config);
   }
@@ -52,13 +52,6 @@ public class PrimaryDatasourceConfig {
     return bean.getObject();
   }
 
-  @Bean(name = "primaryTransactionManager")
-  @Primary
-  public DataSourceTransactionManager primaryTransactionManager(
-      @Qualifier("primaryDataSource") DataSource dataSource) {
-    return new DataSourceTransactionManager(dataSource);
-  }
-
   @Bean(name = "primarySqlSessionTemplate")
   @Primary
   public SqlSessionTemplate primarySqlSessionTemplate(
@@ -68,9 +61,16 @@ public class PrimaryDatasourceConfig {
     return new SqlSessionTemplate(sqlSessionFactory);
   }
 
-  @Bean(name = "jdbcTemplate")
+  @Bean(name = "primaryjdbcTemplate")
   @Primary
   public JdbcTemplate primaryJdbcTemplate(@Qualifier("primaryDataSource") DataSource dataSource) {
     return new JdbcTemplate(dataSource);
+  }
+
+  @Bean(name = "primaryTransactionManager")
+  @Primary
+  public DataSourceTransactionManager primaryTransactionManager(
+      @Qualifier("primaryDataSource") DataSource dataSource) {
+    return new DataSourceTransactionManager(dataSource);
   }
 }

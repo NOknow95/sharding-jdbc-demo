@@ -1,7 +1,7 @@
-package com.noknow.shardingjdbcdemo.repository.mysql.sharding.mapper;
+package com.noknow.shardingjdbcdemo.repository.sharding.mapper;
 
 import com.noknow.shardingjdbcdemo.repository.entity.AuditLog;
-import com.noknow.shardingjdbcdemo.repository.mysql.MyBaseMapper;
+import com.noknow.shardingjdbcdemo.repository.base.MyBaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

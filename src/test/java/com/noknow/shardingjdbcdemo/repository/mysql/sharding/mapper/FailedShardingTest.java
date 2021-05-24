@@ -2,9 +2,10 @@ package com.noknow.shardingjdbcdemo.repository.mysql.sharding.mapper;
 
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
-import com.noknow.shardingjdbcdemo.DbUtils;
+import com.noknow.shardingjdbcdemo.other.DbUtils;
 import com.noknow.shardingjdbcdemo.annotations.NoneTransactionalSpringTest;
 import com.noknow.shardingjdbcdemo.repository.entity.AuditLog;
+import com.noknow.shardingjdbcdemo.repository.sharding.mapper.AuditLogMapper;
 import java.sql.SQLException;
 import java.util.Date;
 import org.junit.jupiter.api.BeforeAll;

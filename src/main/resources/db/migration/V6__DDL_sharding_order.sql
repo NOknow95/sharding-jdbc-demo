@@ -7,7 +7,7 @@ begin
     while i < size
         do
             set @create_table_sql =
-                    concat('create table order_', i, ' (id bigint primary key,tag varchar(64),created_time datetime);');
+                    concat('create table order_', i, ' (id bigint primary key,database_key bigint not null,tag varchar(64),created_time datetime);');
             prepare create_table from @create_table_sql;
             execute create_table;
             deallocate prepare create_table;

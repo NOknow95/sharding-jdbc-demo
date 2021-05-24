@@ -46,6 +46,7 @@ buildNumber.properties
 .idea/
 
 **/rebel.xml
+/logs/
 
 ## Plugin-specific files:
 

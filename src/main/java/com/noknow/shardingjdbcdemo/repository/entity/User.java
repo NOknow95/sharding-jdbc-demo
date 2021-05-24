@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -20,13 +22,20 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Entity
 @Table(name = "user")
+@ToString
+@NoArgsConstructor
 public class User {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(generator = "JDBC")
   private Long id;
   private String name;
   private Integer age;
+
+  public User(String name, Integer age) {
+    this.name = name;
+    this.age = age;
+  }
 
   @Override
   public boolean equals(Object o) {

@@ -1,4 +1,4 @@
-package com.noknow.shardingjdbcdemo.simple;
+package com.noknow.shardingjdbcdemo.other;
 
 import cn.hutool.db.Db;
 import cn.hutool.db.Entity;

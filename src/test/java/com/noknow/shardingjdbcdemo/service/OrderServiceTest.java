@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import cn.hutool.json.JSONUtil;
+import com.noknow.shardingjdbcdemo.annotations.ShardingTransactionalSpringTest;
 import com.noknow.shardingjdbcdemo.repository.entity.Order;
 import java.util.Date;
 import java.util.stream.Stream;
@@ -16,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-@SpringBootTest
-@Transactional(transactionManager = "shardingTransactionManager")
+@ShardingTransactionalSpringTest
 @TestInstance(Lifecycle.PER_CLASS)
 class OrderServiceTest {
 
