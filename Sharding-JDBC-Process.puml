@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+'autonumber
+
+participant Service order 1
+participant DAO order 2
+participant "Sharding JDBC" order 3
+database "DB 0..n" order 4
+
+autonumber
+
+Service -> "Sharding JDBC": 加载配置
+
+"Sharding JDBC" -> "DB 0..n": 加载metadata
+
+"DB 0..n" -> "Sharding JDBC": metadata
+
+Service -> DAO: 业务代码调用
+
+DAO -> "Sharding JDBC": Logic SQL
+
+"Sharding JDBC" -> "Sharding JDBC": 解析SQL
+
+"Sharding JDBC" -> "Sharding JDBC": 数据库/数据表 分片（如果需要）[SQL改写]
+
+"Sharding JDBC" -> "Sharding JDBC": 生成key（如果需要）[SQL改写]
+
+"Sharding JDBC" -> "DB 0..n": Actual SQL
+
+"DB 0..n" -> "Sharding JDBC": 数据库执行结果
+
+"Sharding JDBC" -> "Sharding JDBC": 结果归并
+
+"Sharding JDBC" -> DAO: data
+
+DAO -> Service: data
+
+@enduml
