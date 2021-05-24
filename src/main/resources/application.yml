@@ -16,11 +16,11 @@ spring:
     locations: classpath:db/migration
     out-of-order: false
     baseline-on-migrate: true
-  #    url: jdbc:mysql://localhost:3306/test_database0?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://localhost:3306/test_database0?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
 #    user: root
 #    password: root1234
----
-spring:
+#---
+#spring:
   shardingsphere:
     sharding:
       default-data-source-name: test_database0
@@ -61,7 +61,7 @@ spring:
 logging:
   level:
     org:
-      springframework: debug
+      springframework: info
     com:
       noknow: debug
 

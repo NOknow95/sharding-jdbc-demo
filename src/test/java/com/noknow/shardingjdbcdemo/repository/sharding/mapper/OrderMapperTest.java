@@ -18,10 +18,11 @@ class OrderMapperTest {
 
   @Test
   void insert() {
-    LongStream.iterate(20, i -> i + 1).limit(20).forEach(
+    LongStream.iterate(0, i -> i + 1).limit(20).forEach(
         i -> {
           Order order = new Order()
               .setId(i)
+              .setDatabaseKey(i % 2)
               .setTag(TagEnum.ELECTRONIC.name())
               .setCreatedTime(DateTime.now());
           orderMapper.insertSelective(order);

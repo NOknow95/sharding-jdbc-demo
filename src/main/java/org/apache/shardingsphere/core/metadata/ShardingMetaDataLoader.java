@@ -39,7 +39,7 @@ import org.apache.shardingsphere.underlying.common.rule.DataNode;
 @SuppressWarnings({"all"})
 @RequiredArgsConstructor
 @Slf4j(topic = "ShardingSphere-metadata[overwriten by jw]")
-public final class ShardingMetaDataLoader111 {
+public final class ShardingMetaDataLoader {
 
   private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 

@@ -1,9 +1,11 @@
 package com.noknow.shardingjdbcdemo.other;
 
+import cn.hutool.core.lang.Console;
 import cn.hutool.db.Db;
 import cn.hutool.db.Entity;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
+import com.noknow.shardingjdbcdemo.utils.SnowflakeUtil;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.io.InputStream;
@@ -25,6 +27,12 @@ public class SimpleTest {
   @Test
   void test() {
     System.out.println(System.getProperty("os.name"));
+  }
+
+  @Test
+  void snowflake() {
+    long id = SnowflakeUtil.nextId();
+    Console.log("id:{}", id);
   }
 
   @SuppressWarnings("unchecked")

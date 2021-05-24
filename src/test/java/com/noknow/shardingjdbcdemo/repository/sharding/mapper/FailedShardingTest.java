@@ -1,11 +1,12 @@
 package com.noknow.shardingjdbcdemo.repository.sharding.mapper;
 
+import static org.assertj.core.api.Assertions.fail;
+
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
-import com.noknow.shardingjdbcdemo.other.DbUtils;
 import com.noknow.shardingjdbcdemo.annotations.NoneTransactionalSpringTest;
+import com.noknow.shardingjdbcdemo.other.DbUtils;
 import com.noknow.shardingjdbcdemo.repository.entity.AuditLog;
-import com.noknow.shardingjdbcdemo.repository.sharding.mapper.AuditLogMapper;
 import java.sql.SQLException;
 import java.util.Date;
 import org.junit.jupiter.api.BeforeAll;
@@ -29,18 +30,18 @@ class FailedShardingTest {
   }
 
   @Test
-  @DisplayName("insert audit log failed when 1st time")
+  @DisplayName("insert audit log failed at 1st time")
   void flywayInitAfterShardingInit() {
     try {
       auditLogMapper.insertSelective(auditLog);
       if (DELETE_LOGIC_TABLE) {
-        org.assertj.core.api.Assertions.fail("expect insert failed but success.");
+        fail("expect insert failed but success.");
       }
     } catch (Exception e) {
       if (DELETE_LOGIC_TABLE) {
         Console.error(e, "[expected]insert failed, exception:");
       } else {
-        org.assertj.core.api.Assertions.fail("expect insert failed but success.");
+        fail("expect insert failed but success.");
       }
     }
   }

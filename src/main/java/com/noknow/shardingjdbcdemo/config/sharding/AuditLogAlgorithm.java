@@ -32,6 +32,6 @@ public class AuditLogAlgorithm implements PreciseShardingAlgorithm<Date> {
     String table = StrUtil.format("{}_{}", logicTableName, suffix);
     log.info("year:{}, suffix:{}, table:{}", year, suffix, table);
     HashSet<String> tNames = new HashSet<>(availableTargetNames);
-    return tNames.contains(table) ? table : StrUtil.format("{}_default", logicTableName);
+    return tNames.contains(table) ? table : logicTableName;
   }
 }

@@ -3,7 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper
   namespace="com.noknow.shardingjdbcdemo.repository.sharding.mapper.OrderMapper">
-
   <update id="updateSelective">
     update `order`
     <set>
@@ -40,7 +39,32 @@
     </where>
   </select>
 
-  <insert id="insertSelective" >
-    insert into `order` (<if test="id != null">id,</if><if test="tag != null and tag != ''">tag,</if><if test="createdTime != null">created_time</if> ) values (<if test="id != null">#{id},</if><if test="tag != null and tag != ''">#{tag},</if><if test="createdTime != null">#{createdTime}</if>)
+  <insert id="insertSelective">
+    insert into `order` (
+    <if test="id != null">
+      id,
+    </if>
+    <if test="databaseKey != null">
+      database_key,
+    </if>
+    <if test="tag != null and tag != ''">
+      tag,
+    </if>
+    <if test="createdTime != null">
+      created_time
+    </if>
+    ) values (
+    <if test="id != null">
+      #{id},
+    </if>
+    <if test="databaseKey != null">
+      #{databaseKey},
+    </if>
+    <if test="tag != null and tag != ''">
+      #{tag},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime}
+    </if>)
   </insert>
 </mapper>

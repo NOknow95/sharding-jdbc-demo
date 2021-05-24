@@ -1,9 +1,11 @@
 package com.noknow.shardingjdbcdemo.repository.sharding.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.RandomUtil;
 import com.noknow.shardingjdbcdemo.annotations.ShardingTransactionalSpringTest;
 import com.noknow.shardingjdbcdemo.repository.entity.AuditLog;
@@ -27,6 +29,16 @@ class AuditLogMapperTest {
     auditLog = new AuditLog().setCreateTime(DateTime.now())
         .setCreator("wjw")
         .setDescription(RandomUtil.randomString(6));
+  }
+
+  @Test
+  void insertWithNullId() {
+    try {
+      mapper.insert(auditLog);
+      fail("expected failure but success");
+    } catch (Exception e) {
+      Console.error(e, "insert with null id failed");
+    }
   }
 
   @Test

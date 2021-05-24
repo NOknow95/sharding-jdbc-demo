@@ -45,7 +45,7 @@ public class UserService {
     return userMapper.selectByPrimaryKey(userId);
   }
 
-  @Transactional(rollbackFor = Exception.class)
+  @Transactional(rollbackFor = Exception.class, transactionManager = "primaryTransactionManager")
   public void primaryTransactionSave(User user, DateTime now) {
     transactionSave(user, now);
   }
