@@ -1,4 +1,4 @@
-package com.noknow.shardingjdbcdemo.repository.mysql.sharding.mapper;
+package com.noknow.shardingjdbcdemo.repository.sharding.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,7 +7,6 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.RandomUtil;
 import com.noknow.shardingjdbcdemo.annotations.ShardingTransactionalSpringTest;
 import com.noknow.shardingjdbcdemo.repository.entity.AuditLog;
-import com.noknow.shardingjdbcdemo.repository.sharding.mapper.AuditLogMapper;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;

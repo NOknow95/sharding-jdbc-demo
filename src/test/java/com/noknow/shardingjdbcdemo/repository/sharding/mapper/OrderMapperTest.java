@@ -1,4 +1,4 @@
-package com.noknow.shardingjdbcdemo.repository.mysql.sharding.mapper;
+package com.noknow.shardingjdbcdemo.repository.sharding.mapper;
 
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.lang.Console;
